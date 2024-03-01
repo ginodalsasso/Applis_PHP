@@ -11,7 +11,7 @@
         <main class="container">
             <a href="recap.php"><button class="btn btn-info mt-3 mb-3">Retour au récap</button></a>
             <h1>Ajouter un produit</h1>
-            <form action="traitement.php" method="post">
+            <form action="traitement.php?action=add" method="post">
                 <p>
                     <label class="form-label">
                         Nom du produit :

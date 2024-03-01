@@ -26,8 +26,11 @@
                                 "<th>#</th>",
                                 "<th>Nom</th>",
                                 "<th>Prix</th>",
+                                "<th></th>",
                                 "<th>Quantité</th>",
+                                "<th></th>",
                                 "<th>Total</th>",
+                                "<th></th>",
                             "</tr>",
                         "</thead>",
                         "<tbody>";
@@ -39,27 +42,32 @@
                             "<td>".$index."</td>",
                             "<td>".$product['name']."</td>",
                             "<td>".number_format($product['price'], 2, ",",  "&nbsp;"). "&nbsp;€</td>",
-                            "<td>".number_format($product['qtt'])."</td>",
-                            "<td>".number_format($product['total'], 2, ",",  "&nbsp;"). "&nbsp;€</td>", 
+                            "<td><a href='#' class='btn btn-danger'>-</a>",
+                            "<td>".number_format($product['qtt']),
+                            "<td><a href='#' class='btn btn-success'>+</a></td>",
+                            "<td>".number_format($product['total'], 2, ",",  "&nbsp;"). "&nbsp;€</td>",
+                            "<td><a href='#' class='btn btn-outline-dark'>suprimer</a></td>", 
                         "</tr>";
-                    $totalProduct+=$product['qtt'];
+                    $totalProduct+=$product['qtt']; 
                     $totalGeneral+=$product['total'];
 
                 }
 
                 echo "<tr>",
-                        "<td colspan=3>Total général :</td>",
+                        "<td colspan=4>Total général :</td>",
                         // affichage du total qtt
                         "<td><strong>".number_format($totalProduct)."</strong></td>",  
                         // affichage du total général
-                        "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€<strong></td>",
+                        "<td colspan=3><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€<strong></td>",
                     "</tr>",  
                     "</tbody>",
                     "</table>";
-
                 }
         ?>
+        <a href='traitement.php?action=clear' class='btn btn-outline-secondary'>Suprimer totalité</a>
     </main>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
