@@ -1,7 +1,6 @@
 <?php
     session_start();
     
-
     if(isset($_GET['action'])){
 
         switch($_GET['action']){
@@ -25,14 +24,35 @@
                     }
                 }
                 break;
-            case "delete":
-                
-            case "clear": 
-                session_destroy();
 
+                //supprime l'article
+            case "delete":
+                unset($_SESSION["products"][$_GET["id"]]); //cherche dans le tableau products l'id du produit 
+                header("Location: recap.php"); die;
                 break;
+                
+                //supprime le panier complet
+            case "clear": 
+                unset($_SESSION['products']);
+                header("Location: recap.php"); die;
+                break;
+                
+                //ajoute +1 à qtt
             case "up-qtt":
+                $_SESSION["products"][$_GET["id"]]["qtt"] ++; //cherche la qtt dans et l'id dans le tableau afin de d'incrémenter
+
+                header("Location: recap.php"); die;
+                break;
+                
+                //enlève -1 à qtt
             case "down-qtt":
+                if($_SESSION['products'][$_GET["id"]]["qtt"] == 1){  //si mon produit est inférieur à un alors il se supprime
+                    unset($_SESSION["products"][$_GET["id"]]);
+                } else {
+                    $_SESSION["products"][$_GET["id"]]["qtt"] --; //sinon nous décrémentons
+                }
+                header("Location: recap.php"); die;
+                break;
         }
     }
     
