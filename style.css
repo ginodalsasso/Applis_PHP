@@ -26,3 +26,7 @@ th{
     color: #fff;
     cursor: pointer;
   } */
+
+  #messages {
+    padding: 10px;
+  }

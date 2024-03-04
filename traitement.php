@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+
     if(isset($_GET['action'])){
 
         switch($_GET['action']){
@@ -21,6 +21,10 @@
                         ];
             
                         $_SESSION['products'][] = $product;
+                        //message lors de l'ajout d'un produit
+                        $_SESSION["messages"] = "<div class='alert alert-success' role='alert'>Le produit a bien été ajouté</div>";
+
+                        header("Location:index.php"); die;
                     }
                 }
                 break;
@@ -28,12 +32,16 @@
                 //supprime l'article
             case "delete":
                 unset($_SESSION["products"][$_GET["id"]]); //cherche dans le tableau products l'id du produit 
+                //message lors de la suppression d'un produit
+                $_SESSION["messages"] = "<div class='alert alert-danger' role='alert'>Le produit a bien été supprimé </div>";
                 header("Location: recap.php"); die;
                 break;
                 
                 //supprime le panier complet
             case "clear": 
                 unset($_SESSION['products']);
+                //message lors de la suppression totale du panier
+                $_SESSION["messages"] = "<div class='alert alert-warning' role='alert'>Le panier à bien été vidé</div>";
                 header("Location: recap.php"); die;
                 break;
                 
@@ -56,5 +64,3 @@
         }
     }
     
-
-    header("Location:index.php");
